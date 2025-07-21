@@ -1,4 +1,4 @@
-// This file is now the Login Page (previously app/login/page.tsx)
+// This file is now the Login Page (previously app/page.tsx)
 "use client";
 
 import type React from "react";
@@ -11,18 +11,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Eye,
-  EyeOff,
-  Mail,
-  Lock,
-  ArrowRight,
-  Facebook,
-  Chrome,
-  Apple,
-} from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/image"; // Ensure Image is imported
 import { useRouter } from "next/navigation"; // Import useRouter
 
 export default function LoginPage() {
@@ -84,72 +75,40 @@ export default function LoginPage() {
     // Handle social login
   };
 
+  const handlePromoClick = () => {
+    console.log("Promotional image button clicked!");
+    // You can add navigation or open a modal here if needed
+    // For example: router.push('/promotions');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4">
       <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        {/* Left Side - Branding */}
+        {/* Left Side - Promotional Image Only */}
         <motion.div
-          className="hidden lg:block"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          className="w-full max-w-md mx-auto lg:mx-0" // Center on mobile, left-align on desktop
         >
-          <div className="text-center space-y-6">
-            <div className="flex items-center justify-center space-x-3 mb-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center">
-                <span
-                  className="text-white font-bold text-2xl"
-                  style={{ fontFamily: '"Libertinus Mono", monospace' }}
-                >
-                  J
-                </span>
-              </div>
-              <div className="text-left">
-                <div
-                  className="text-3xl font-bold text-gray-900"
-                  style={{ fontFamily: '"Libertinus Mono", monospace' }}
-                >
-                  JoJo Scrubs
-                </div>
-                <div className="text-gray-600">Premium Medical Wear</div>
-              </div>
-            </div>
-
+          <Button
+            variant="ghost" // Use ghost variant to remove default button styling
+            className="relative w-full h-[500px] md:h-[600px] rounded-2xl overflow-hidden shadow-2xl p-0 hover:scale-[1.01] transition-transform duration-300"
+            onClick={handlePromoClick}
+          >
             <Image
-              src="https://scontent-mba2-1.xx.fbcdn.net/v/t51.75761-15/505121687_18014423654724332_6470309283279507284_n.webp?stp=dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFACcbMCQJOvTxA-mJmI9krY3l9p6hqgOdjeX2nqGqA58qSqOyS0CXYjzcOkhcs6wReFjnq8lhimALze8Y9DSAA&_nc_ohc=hhGJjlzdGiUQ7kNvwHYbQEm&_nc_oc=Adk1NKs8E5v9GkWXIDpZzmezM-QtieHinjyIXF_G3C8xJBJVJQ5rSU9qSNnwf53f-8M&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=oXlVo_KxzMoFo3JGUVuZoQ&oh=00_AfRZ4_t-RsVFnKDBFVLc1xov_hqoliRzPmJBx7VnIHgIHA&oe=687F0AD9"
-              alt="Medical professionals wearing JoJo Scrubs"
-              width={500}
-              height={400}
-              className="rounded-2xl shadow-2xl"
+              src="https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/505191245_18014423747724332_7337792287830952095_n.webp?stp=dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH2iBmXSpHGCU7k2BF_SF-9wII0PwKUbOPAgjQ_ApRs44OwzKfmWC0k1mxAs2j-r275afqsovYlElqkyiKX0833&_nc_ohc=WVsNOhJ-YYwQ7kNvwGU1ivJ&_nc_oc=AdmLXxsDrf7hT4ZhNNsfh_Lw2kRtRHduRrZiDHRI6u8Du0Eq1GmwHSnlJ6NAl00Pdps&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=mYZCa2xQbK7Qqe9YbqgBOw&oh=00_AfSsDDeopafoks5a1-lTtw90QIQbmih0AZSBzRiBErRGIA&oe=68827DFE"
+              alt="Mid-Year Mega Sale"
+              fill
+              className="object-cover object-center"
+              priority
             />
-
-            <div className="space-y-4">
-              <h2 className="text-3xl font-bold text-gray-900">
-                Welcome Back!
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Join thousands of healthcare professionals who trust JoJo Scrubs
-                for their daily comfort and style.
-              </p>
-              <div className="flex items-center justify-center space-x-8 text-sm text-gray-500">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span>Premium Quality</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span>Fast Delivery</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                  <span>Trusted Brand</span>
-                </div>
-              </div>
-            </div>
-          </div>
+            {/* Optional: Add a subtle overlay for better click feedback */}
+            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
+          </Button>
         </motion.div>
 
-        {/* Right Side - Login Form */}
+        {/* Right Side - Login Form with Branding and Welcome Message */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -157,15 +116,35 @@ export default function LoginPage() {
         >
           <Card className="w-full max-w-md mx-auto shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
             <CardHeader className="space-y-1 pb-6">
-              <CardTitle className="text-3xl font-bold text-center text-gray-900">
-                Sign In
-              </CardTitle>
-              <p className="text-center text-gray-600">
-                Enter your credentials to access your account
-              </p>
+              {/* Branding moved inside CardHeader */}
             </CardHeader>
 
             <CardContent className="space-y-6">
+              {/* Welcome Back! text and trust indicators moved inside CardContent */}
+              <div className="space-y-4 text-center">
+                <h2 className="text-3xl font-bold text-gray-900">
+                  Welcome Back!
+                </h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  Join thousands of healthcare professionals who trust JoJo
+                  Scrubs for their daily comfort and style.
+                </p>
+                <div className="flex items-center justify-center space-x-8 text-sm text-gray-500">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                    <span>Premium Quality</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <span>Fast Delivery</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                    <span>Trusted Brand</span>
+                  </div>
+                </div>
+              </div>
+
               {/* Social Login Buttons */}
               <div className="space-y-3">
                 <Button
@@ -173,23 +152,41 @@ export default function LoginPage() {
                   className="w-full h-12 border-2 hover:bg-gray-50 transition-all duration-300 bg-transparent"
                   onClick={() => handleSocialLogin("google")}
                 >
-                  <Chrome className="mr-3 h-5 w-5 text-red-500" />
+                  <Image
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png"
+                    alt="Google logo"
+                    width={20}
+                    height={20}
+                    className="mr-3"
+                  />
                   Continue with Google
                 </Button>
                 <div className="grid grid-cols-2 gap-3">
                   <Button
                     variant="outline"
-                    className="h-12 border-2 hover:bg-blue-50 transition-all duration-300 bg-transparent"
+                    className="h-12 border-2 hover:bg-blue-50 transition-all duration-300 bg-transparent flex items-center justify-center"
                     onClick={() => handleSocialLogin("facebook")}
                   >
-                    <Facebook className="h-5 w-5 text-blue-600" />
+                    <Image
+                      src="https://cdn.creazilla.com/icons/7911211/facebook-icon-lg.png"
+                      alt="Facebook logo"
+                      width={20}
+                      height={20}
+                      className="h-5 w-5"
+                    />
                   </Button>
                   <Button
                     variant="outline"
                     className="h-12 border-2 hover:bg-gray-50 transition-all duration-300 bg-transparent"
                     onClick={() => handleSocialLogin("apple")}
                   >
-                    <Apple className="h-5 w-5 text-gray-900" />
+                    <Image
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC_ps_PWPSsQ0ZeX7Zsqvtu_30qFYpdmW-0g&s"
+                      alt="Apple logo"
+                      width={20}
+                      height={20}
+                      className="h-5 w-5"
+                    />
                   </Button>
                 </div>
               </div>
@@ -285,7 +282,9 @@ export default function LoginPage() {
                     <Checkbox
                       id="remember"
                       checked={rememberMe}
-                      onCheckedChange={setRememberMe}
+                      onCheckedChange={(checked) =>
+                        setRememberMe(checked as boolean)
+                      }
                     />
                     <Label
                       htmlFor="remember"

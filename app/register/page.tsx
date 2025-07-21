@@ -1,9 +1,8 @@
-// This file is now the Homepage (previously app/page.tsx)
 "use client";
 
-import type React from "react";
-
 import { useState } from "react";
+
+import type React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -22,14 +21,11 @@ import {
   MapPin,
   ArrowRight,
   ArrowLeft,
-  Facebook,
-  Chrome,
-  Apple,
   Check,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation"; // Import useRouter
+import { useRouter } from "next/navigation";
 
 interface FormData {
   firstName: string;
@@ -49,8 +45,10 @@ export default function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isEmailSent, setIsEmailSent] = useState(false); // Renamed from isRegisteredSuccess for clarity
-  const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [isEmailSent, setIsEmailSent] = useState(false);
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof FormData, string | undefined>>
+  >({});
 
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
@@ -67,7 +65,7 @@ export default function RegisterPage() {
 
   const totalSteps = 3;
   const progress = (currentStep / totalSteps) * 100;
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter();
 
   const updateFormData = (field: keyof FormData, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -78,19 +76,17 @@ export default function RegisterPage() {
   };
 
   const validateStep = (step: number) => {
-    const newErrors: Partial<FormData> = {};
+    const newErrors: Partial<Record<keyof FormData, string | undefined>> = {};
 
     if (step === 1) {
-      if (!formData.firstName.trim())
-        newErrors.firstName = "First name is required";
-      if (!formData.lastName.trim())
-        newErrors.lastName = "Last name is required";
-      if (!formData.email.trim()) {
+      if (!formData.firstName) newErrors.firstName = "First name is required";
+      if (!formData.lastName) newErrors.lastName = "Last name is required";
+      if (!formData.email) {
         newErrors.email = "Email is required";
       } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
         newErrors.email = "Email is invalid";
       }
-      if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
+      if (!formData.phone) newErrors.phone = "Phone number is required";
     }
 
     if (step === 2) {
@@ -98,13 +94,18 @@ export default function RegisterPage() {
         newErrors.password = "Password is required";
       } else if (formData.password.length < 8) {
         newErrors.password = "Password must be at least 8 characters";
-      } else if (!/[A-Z]/.test(formData.password)) {
-        newErrors.password =
-          "Password must contain at least one uppercase letter";
-      } else if (!/[0-9]/.test(formData.password)) {
-        newErrors.password = "Password must contain at least one number";
       }
-
+      // Add more password strength checks here if needed (uppercase, number, etc.)
+      if (!/[A-Z]/.test(formData.password)) {
+        newErrors.password =
+          (newErrors.password ? newErrors.password + " | " : "") +
+          "One uppercase letter required";
+      }
+      if (!/[0-9]/.test(formData.password)) {
+        newErrors.password =
+          (newErrors.password ? newErrors.password + " | " : "") +
+          "One number required";
+      }
       if (!formData.confirmPassword) {
         newErrors.confirmPassword = "Please confirm your password";
       } else if (formData.password !== formData.confirmPassword) {
@@ -113,8 +114,8 @@ export default function RegisterPage() {
     }
 
     if (step === 3) {
-      if (!formData.address.trim()) newErrors.address = "Address is required";
-      if (!formData.city.trim()) newErrors.city = "City is required";
+      if (!formData.address) newErrors.address = "Address is required";
+      if (!formData.city) newErrors.city = "City is required";
       if (!formData.agreeToTerms)
         newErrors.agreeToTerms = "You must agree to the terms";
     }
@@ -144,10 +145,12 @@ export default function RegisterPage() {
       await new Promise((resolve) => setTimeout(resolve, 2000));
 
       // Set success state to show welcome message
-      setIsEmailSent(true); // Now correctly triggers the success page
+      setIsEmailSent(true);
+
+      // No auto-redirect here, user clicks "Start Shopping"
     } catch (error) {
       console.error("Registration failed:", error);
-      // Handle error state here, e.g., set an errorMessage state
+      // Handle error state here
     } finally {
       setIsLoading(false);
     }
@@ -155,26 +158,26 @@ export default function RegisterPage() {
 
   const handleSocialLogin = (provider: string) => {
     console.log(`Register with ${provider}`);
-    // In a real app, this would trigger an OAuth flow
+    // Handle social registration
   };
 
-  // Render success page if registration is successful
+  const handlePromoClick = () => {
+    console.log("Promotional image button clicked!");
+    // You can add navigation or open a modal here if needed
+    // For example: router.push('/promotions');
+  };
+
   if (isEmailSent) {
     return (
       <div
-        className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4"
-        style={{
-          backgroundImage:
-            "url('https://images.pexels.com/photos/6214452/pexels-photo-6214452.jpeg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
+        className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center" // Add bg-cover and bg-center
+        style={{ backgroundImage: "url('https://i.pinimg.com/736x/71/6b/82/716b820a8a1d65e7f0bfd5bdb4636dca.jpg')" }} // Add the background image here
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="text-center space-y-6 max-w-md bg-white/80 backdrop-blur-md rounded-xl p-8 shadow-lg"
+          className="text-center space-y-6 max-w-md bg-white bg-opacity-80 p-8 rounded-lg shadow-lg" // Added background to the inner div for readability
         >
           <motion.div
             initial={{ scale: 0 }}
@@ -190,20 +193,19 @@ export default function RegisterPage() {
             <Check className="w-10 h-10 text-green-600" />
           </motion.div>
           <h2 className="text-3xl font-bold text-gray-900">
-            Welcome to JOJO, {formData.firstName}! 🎉
+            Welcome to JOJO Scrubs Kenya , {formData.firstName}!
           </h2>
           <p className="text-gray-600 leading-relaxed">
-            Your account has been successfully created. Ready to shop with us?
-            Discover our premium medical scrubs collection designed just for
-            healthcare heroes like you.
+            Ready to shop with us? Discover our premium medical scrubs
+            collection designed just for healthcare heroes like you.
           </p>
           <Button
-            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full shadow-md"
+            className="bg-blue-600 hover:bg-blue-700"
             onClick={() => {
-              router.push("/home"); // Redirect to your actual homepage
+              router.push("/home");
             }}
           >
-            Start Shopping <ArrowRight className="ml-2 h-5 w-5" />
+            Start Shopping
           </Button>
         </motion.div>
       </div>
@@ -213,7 +215,74 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4">
       <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        {/* Right Side - Registration Form (remains in its original position) */}
+        {/* Left Side - Branding / Promotional Image Button */}
+        <div className="flex flex-col items-center justify-center space-y-6">
+          <div className="flex items-center justify-center space-x-3 mb-8">
+            <div className="w-20 h-20 relative rounded-2xl overflow-hidden flex items-center justify-center">
+              <Image
+                src="/images/jojo-scrubs-logo-new.png" // Corrected image path
+                alt="JoJo Scrubs Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            <div className="text-left">
+              {" "}
+              {/* Corrected branding text container */}
+              <div className="text-3xl font-bold text-gray-900">
+                JoJo Scrubs
+              </div>
+              <div className="text-gray-600">Premium Medical Wear</div>
+            </div>
+          </div>
+
+          {/* Promotional Image as a Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="w-full max-w-md"
+          >
+            <Button
+              variant="ghost"
+              className="relative w-full h-[500px] md:h-[600px] rounded-2xl overflow-hidden shadow-2xl p-0 hover:scale-[1.01] transition-transform duration-300"
+              onClick={handlePromoClick}
+            >
+              <Image
+                src="https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/505121687_18014423654724332_6470309283279507284_n.webp?stp=dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFACcbMCQJOvTxA-mJmI9krY3l9p6hqgOdjeX2nqGqA58qSqOyS0CXYjzcOkhcs6wReFjnq8lhimALze8Y9DSAA&_nc_ohc=XcfqNNqVJd4Q7kNvwE51UF5&_nc_oc=AdnbrQ968VIIsVEPTyX1Rn8cpgK5fOlWc1BaFJ3uB_RZcwIMaDbgtYxvWQQKT_eHINI&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=1irczujle-wvKirKz1NhFA&oh=00_AfSvXWdfpBcghh4F_D8XuLWVP3leaXCHLV90AOd99J5k4A&oe=68828ED9"
+                alt="Mid-Year Mega Sale"
+                fill
+                className="object-cover object-center"
+                priority
+              />
+              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
+            </Button>
+          </motion.div>
+
+          <div className="space-y-4 text-center">
+            <h2 className="text-3xl font-bold text-gray-900">
+              Join Our Community!
+            </h2>
+            <p className="text-lg text-gray-600 leading-relaxed">
+              Create your account and discover why thousands of healthcare
+              professionals choose JoJo Scrubs.
+            </p>
+            <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="bg-blue-50/50 rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold text-green-600">10K+</div>
+                <div className="text-gray-600">Happy Customers</div>
+              </div>
+              <div className="bg-blue-50/50 rounded-lg p-4 text-center">
+                <div className="text-2xl font-bold text-blue-600">4.9★</div>
+                <div className="text-gray-600">Customer Rating</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* End Left Side */}
+
+        {/* Right Side - Registration Form */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
@@ -238,23 +307,41 @@ export default function RegisterPage() {
                     className="w-full h-12 border-2 hover:bg-gray-50 transition-all duration-300 bg-transparent"
                     onClick={() => handleSocialLogin("google")}
                   >
-                    <Chrome className="mr-3 h-5 w-5 text-red-500" />
+                    <Image
+                      src="https://www.citypng.com/public/uploads/preview/google-logo-icon-gsuite-hd-701751694791470gzbayltphh.png" // Corrected image path
+                      alt="Google logo"
+                      width={20}
+                      height={20}
+                      className="mr-3"
+                    />
                     Continue with Google
                   </Button>
                   <div className="grid grid-cols-2 gap-3">
                     <Button
                       variant="outline"
-                      className="h-12 border-2 hover:bg-blue-50 transition-all duration-300 bg-transparent"
+                      className="h-12 border-2 hover:bg-blue-50 transition-all duration-300 bg-transparent flex items-center justify-center"
                       onClick={() => handleSocialLogin("facebook")}
                     >
-                      <Facebook className="h-5 w-5 text-blue-600" />
+                      <Image
+                        src="https://cdn.creazilla.com/icons/7911211/facebook-icon-lg.png"
+                        alt="Facebook logo"
+                        width={20}
+                        height={20}
+                        className="h-5 w-5"
+                      />
                     </Button>
                     <Button
                       variant="outline"
                       className="h-12 border-2 hover:bg-gray-50 transition-all duration-300 bg-transparent"
                       onClick={() => handleSocialLogin("apple")}
                     >
-                      <Apple className="h-5 w-5 text-gray-900" />
+                      <Image
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC_ps_PWPSsQ0ZeX7Zsqvtu_30qFYpdmW-0g&s"
+                        alt="Apple logo"
+                        width={20}
+                        height={20}
+                        className="h-5 w-5"
+                      />
                     </Button>
                   </div>
                   <div className="relative">
@@ -491,7 +578,6 @@ export default function RegisterPage() {
                         )}
                       </div>
 
-                      {/* Password Requirements */}
                       <div className="bg-blue-50 p-4 rounded-lg">
                         <h4 className="text-sm font-medium text-blue-900 mb-2">
                           Password Requirements:
@@ -652,13 +738,13 @@ export default function RegisterPage() {
               </AnimatePresence>
 
               {/* Navigation Buttons */}
-              <div className="flex space-x-4 pt-4">
+              <div className="flex space-x-4">
                 {currentStep > 1 && (
                   <Button
                     type="button"
                     variant="outline"
                     onClick={handlePrevious}
-                    className="flex-1 h-12 border-2 font-semibold bg-transparent hover:bg-gray-100 transition-colors"
+                    className="flex-1 h-12 border-2 font-semibold bg-transparent"
                   >
                     <ArrowLeft className="mr-2 h-4 w-4" />
                     Previous
@@ -682,7 +768,7 @@ export default function RegisterPage() {
                     disabled={isLoading}
                   >
                     {isLoading ? (
-                      <div className="flex items-center justify-center space-x-2">
+                      <div className="flex items-center space-x-2">
                         <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                         <span>Creating Account...</span>
                       </div>
@@ -700,7 +786,7 @@ export default function RegisterPage() {
                 <p className="text-sm text-gray-600">
                   Already have an account?{" "}
                   <Link
-                    href="/" // Assuming '/' is your login page
+                    href="/"
                     className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
                   >
                     Sign in here
@@ -710,67 +796,7 @@ export default function RegisterPage() {
             </CardContent>
           </Card>
         </motion.div>
-
-        {/* Left Side - Branding (Now visible on all screens and moved to the bottom on phone view) */}
-        <motion.div
-          className="lg:block mt-12 lg:mt-0" /* Removed 'hidden', added mt-12 for phone spacing */
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="text-center space-y-6">
-            <div className="flex items-center justify-center space-x-3 mb-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl flex items-center justify-center">
-                <span
-                  className="text-white font-bold text-2xl"
-                  style={{ fontFamily: '"Libertinus Mono", monospace' }}
-                >
-                  J
-                </span>
-              </div>
-              <div className="text-left">
-                <div
-                  className="text-3xl font-bold text-gray-900"
-                  style={{ fontFamily: '"Libertinus Mono", monospace' }}
-                >
-                  JoJo Scrubs
-                </div>
-                <div className="text-gray-600">Premium Medical Wear</div>
-              </div>
-            </div>
-
-            <div className="flex justify-center mb-8">
-              <Image
-                src="https://scontent-mba2-1.xx.fbcdn.net/v/t51.75761-15/505191245_18014423747724332_7337792287830952095_n.webp?stp=dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH2iBmXSpHGCU7k2BF_SF-9wII0PwKUbOPAgjQ_ApRs44OwzKfmWC0k1mxAs2j-r275afqsovYlElqkyiKX0833&_nc_ohc=1gU1kC8wdvcQ7kNvwFKER_m&_nc_oc=AdlMhXHvkNfNR4mfxDgsy33iLaA0xvm3is9TFjqW31AVcAhYcLjUcvEYltj-Wg-cm78&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=1i227eelwm0p74Kv6Rkqew&oh=00_AfTAGSJZ6kDl2YcYkZUJCVp7JaPS--nw2K7i_QvggfiARg&oe=687FDAFE"
-                alt="Healthcare professionals choosing JoJo Scrubs"
-                width={500}
-                height={400}
-                className="rounded-2xl shadow-2xl object-cover"
-                priority
-              />
-            </div>
-
-            <div className="space-y-4">
-              <h2 className="text-3xl font-bold text-gray-900">
-                Join Our Community!
-              </h2>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Create your account and discover why thousands of healthcare
-                professionals choose JoJo Scrubs.
-              </p>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div className="bg-blue-50/50 rounded-lg p-4 text-center">
-                  <div className="text-2xl font-bold text-green-600">10K+</div>
-                  <div className="text-gray-600">Happy Customers</div>
-                </div>
-                <div className="bg-blue-50/50 rounded-lg p-4 text-center">
-                  <div className="text-2xl font-bold text-blue-600">4.9★</div>
-                  <div className="text-gray-600">Customer Rating</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        {/* End Right Side */}
       </div>
     </div>
   );

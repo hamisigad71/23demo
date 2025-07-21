@@ -1,28 +1,37 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Search, ShoppingCart, Heart, User, Menu, X, Phone, Mail } from "lucide-react"
-import Link from "next/link"
-import { useCart } from "@/hooks/use-cart"
-import Image from "next/image"
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import {
+  Search,
+  ShoppingCart,
+  Heart,
+  User,
+  Menu,
+  X,
+  Phone,
+  Mail,
+} from "lucide-react";
+import Link from "next/link";
+import { useCart } from "@/hooks/use-cart";
+import Image from "next/image";
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState("")
-  const { items } = useCart()
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const { items } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navigation = [
     { name: "Home", href: "/home" }, // Updated to /home
@@ -30,7 +39,8 @@ export function Header() {
     { name: "Collections", href: "/collections" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
-  ]
+    { name: "Dashboard", href: "/dashboard" },
+  ];
 
   return (
     <>
@@ -56,7 +66,9 @@ export function Header() {
       {/* Main Header */}
       <motion.header
         className={`sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-white/95 backdrop-blur-md shadow-lg" : "bg-white/90 backdrop-blur-sm"
+          isScrolled
+            ? "bg-white/95 backdrop-blur-md shadow-lg"
+            : "bg-white/90 backdrop-blur-sm"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -80,7 +92,7 @@ export function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden lg:flex items-center space-x-8 lg:pl-[10px]">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -128,9 +140,8 @@ export function Header() {
               </Button>
 
               <Button variant="ghost" size="sm" asChild>
-                <Link href="/">
-                  {" "}
-                  {/* Updated to / for login page */}
+                <Link href="/dashboard">
+                  {/* Link to user dashboard */}
                   <User className="h-5 w-5" />
                 </Link>
               </Button>
@@ -142,7 +153,11 @@ export function Header() {
                 className="lg:hidden"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                {isMobileMenuOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
               </Button>
             </div>
           </div>
@@ -185,7 +200,10 @@ export function Header() {
 
                 {/* Mobile Actions */}
                 <div className="flex space-x-4 pt-4 border-t border-gray-200">
-                  <Button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white rounded-full" asChild>
+                  <Button
+                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white rounded-full"
+                    asChild
+                  >
                     <Link href="/">Sign In</Link> {/* Updated to / */}
                   </Button>
                   <Button
@@ -202,5 +220,5 @@ export function Header() {
         </AnimatePresence>
       </motion.header>
     </>
-  )
+  );
 }

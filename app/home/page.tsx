@@ -1,5 +1,5 @@
-// This file is now the Homepage (previously app/page.tsx)
 "use client";
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -60,7 +60,7 @@ const featuredProducts = [
     price: 5200,
     originalPrice: 6000,
     image:
-      "https://scontent-mba2-1.xx.fbcdn.net/v/t51.75761-15/504445908_18014423756724332_7874801041506342832_n.webp?stp=dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFMZ9UnYw1XNR22hmQSWXIwCLnc8T5trUYIudzxPm2tRloL5EfHgOJ8lwstGqb4eQpE1FBpENLKC-tpg13Huao-&_nc_ohc=Ysb1_DGp2IoQ7kNvwEIpZRF&_nc_oc=AdlT38D7zWaUB3oAbHaW5Mo3qjt2fD-1LPUth80YugX5ztGstPl_0xgv-sfN-FfZ4W4&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=zVRXE8QCNm5hpv4TpsF_nw&oh=00_AfSpP3zs1HO3DcXVHEph6IY8i1AtV2kmUzPoSPjIcHF5ew&oe=687FDF8C",
+      "https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/490800731_18008590463724332_6419610319458733467_n.webp?stp=dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEVdDPUgPgPLx6JgtkbL0_SS_AVVtkJpFtL8BVW2QmkW8Ran2ckPPmBrN9AzDvccCIHwZJNmpxey18CGJc-itQ9&_nc_ohc=Rk8tJmEVjWIQ7kNvwEKSY-_&_nc_oc=AdmtR1frujI0_poIoKydAeTATTL9yIGkF92LllE5f2p0ZqcTKKMPXTY_uX8zJdPgi8U&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=NAvIDQzVJvq6eL6KLLw2jg&oh=00_AfTwKiapw65E3c0py2SLX2XzDE_SEQ0iNhsDBYKIVa6I0g&oe=68825671",
     rating: 4.9,
     reviews: 203,
     badge: "Premium",
@@ -150,7 +150,7 @@ export default function HomePage() {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [testimonials.length]); // Corrected: Added testimonials.length to dependency array
 
   // Calculate next Friday for the promotion
   const getNextFriday = () => {
@@ -175,18 +175,22 @@ export default function HomePage() {
 
       {/* ===== HERO SECTION (REVISED) ===== */}
       <section className="min-h-screen grid grid-cols-1 lg:grid-cols-2">
-        <div className="flex flex-col justify-center items-start p-8 lg:p-16 bg-slate-50">
+        <div className="flex flex-col justify-center items-center p-8 lg:p-16 bg-slate-50 text-center lg:items-start lg:text-left">
+          {" "}
+          {/* Centered items for mobile, left-aligned for large */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <Badge className="mb-6 bg-pink-100 text-pink-700 px-4 py-2 text-sm font-medium border border-pink-200">
+            <Badge className="mb-4 md:mb-6 bg-pink-100 text-pink-700 px-3 py-1 text-xs md:text-sm font-medium border border-pink-200 rounded-full">
+              {" "}
+              {/* Smaller badge, rounded */}
               🇰🇪 Proudly Kenyan • Free Delivery Nationwide
             </Badge>
           </motion.div>
           <motion.h1
-            className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight"
+            className="text-4xl md:text-5xl lg:text-7xl font-extrabold mb-4 md:mb-6 leading-tight tracking-tighter" /* Slightly larger h1, tighter tracking for impact */
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -197,7 +201,7 @@ export default function HomePage() {
             </span>
           </motion.h1>
           <motion.p
-            className="text-lg md:text-xl mb-8 text-slate-600 max-w-xl leading-relaxed"
+            className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 text-slate-600 max-w-xl leading-relaxed" /* Slightly smaller text for balance, consistent max-width */
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
@@ -207,27 +211,27 @@ export default function HomePage() {
             nationwide.
           </motion.p>
           <motion.div
-            className="flex flex-row flex-wrap gap-4 items-center"
+            className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 items-center justify-center lg:justify-start"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
             <Button
               size="lg"
-              className="bg-pink-500 hover:bg-pink-600 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+              className="bg-pink-500 hover:bg-pink-600 text-white px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group w-full sm:w-auto" /* Full width on mobile, auto on sm+ */
               asChild
             >
               <Link href="/products">
                 Shop Collection
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
             <Button
               variant="outline"
               size="lg"
-              className="border-2 border-slate-300 text-slate-700 hover:bg-slate-200 hover:text-slate-900 px-8 py-4 text-lg font-semibold rounded-full transition-all duration-300 group bg-transparent"
+              className="border-2 border-slate-300 text-slate-700 hover:bg-slate-200 hover:text-slate-900 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full transition-all duration-300 group bg-transparent w-full sm:w-auto" /* Full width on mobile, auto on sm+ */
             >
-              <Play className="mr-2 h-5 w-5" />
+              <Play className="mr-2 h-4 w-4 md:h-5 md:w-5" />
               Watch Story
             </Button>
           </motion.div>
@@ -235,132 +239,197 @@ export default function HomePage() {
         {/* IMAGE CONTAINER FIXES HERE */}
         <div className="relative min-h-[50vh] lg:min-h-screen">
           <Image
-            src="https://scontent-mba2-1.xx.fbcdn.net/v/t51.75761-15/488582576_18006617801724332_1087545292500469767_n.jpg?stp=dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFihvncD2Or8CBMdQjudX2y2oVvCPuqSu_ahW8I-6pK76BibyAz9FsaxP1Mr2gsNE57RcDBtKhzRN11GB_py6QI&_nc_ohc=DpQMiTeebYMQ7kNvwF4CAxm&_nc_oc=Adk9D4e9mQ_mEbwE9jEWpidf5trQU8Kjlwy6gGz_Boo3EdUAddTZwbDW9AfieMvfd-I&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=WxUr7t4Flke4be3lIpdndw&oh=00_AfQRYl4lNaYVbbhOIZTRNZWulXQnzT-Ou1XKsnlMssGAyA&oe=687FC0AA"
+            src="https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/488582576_18006617801724332_1087545292500469767_n.jpg?stp=dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFihvncD2Or8CBMdQjudX2y2oVvCPuqSu_ahW8I-6pK76BibyAz9FsaxP1Mr2gsNE57RcDBtKhzRN11GB_py6QI&_nc_ohc=DpQMiTeebYMQ7kNvwF4CAxm&_nc_oc=Adk9D4e9mQ_mEbwE9jEWpidf5trQU8Kjlwy6gGz_Boo3EdUAddTZwbDW9AfieMvfd-I&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=WxUr7t4Flke4be3lIpdndw&oh=00_AfQRYl4lNaYVbbhOIZTRNZWulXQnzT-Ou1XKsnlMssGAyA&oe=687FC0AA"
             alt="Confident medical professional smiling while wearing premium scrubs"
             fill
-            className="object-cover object-top sm:object-center md:object-center"
+            // Keep object-cover. object-top for mobile, then object-center for larger screens
+            className="object-cover object-top md:object-center"
             sizes="(max-width: 1023px) 100vw, 50vw"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent lg:bg-gradient-to-r"></div>
+          {/* Subtle gradient overlay to enhance text readability on image if text overlaps */}
+          <div className="absolute inset-0 bg-black/20 to-transparent lg:bg-gradient-to-r lg:from-black/10"></div>
         </div>
       </section>
 
       {/* Trust Indicators */}
-      <section className="py-16 bg-white">
+      <section className="py-12 md:py-16 bg-white">
+        {" "}
+        {/* Adjusted padding */}
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-blue-600">5+</div>
-              <div className="text-gray-600">Years of Excellence</div>
+            <div className="space-y-1 md:space-y-2">
+              {" "}
+              {/* Adjusted vertical space */}
+              <div className="text-3xl md:text-4xl font-bold text-blue-600">
+                5+
+              </div>{" "}
+              {/* Slightly smaller numbers for balance */}
+              <div className="text-sm md:text-base text-gray-600">
+                Years of Excellence
+              </div>{" "}
+              {/* Adjusted text size */}
             </div>
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-blue-600">10K+</div>
-              <div className="text-gray-600">Happy Customers</div>
+            <div className="space-y-1 md:space-y-2">
+              <div className="text-3xl md:text-4xl font-bold text-blue-600">
+                10K+
+              </div>
+              <div className="text-sm md:text-base text-gray-600">
+                Happy Customers
+              </div>
             </div>
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-blue-600">50+</div>
-              <div className="text-gray-600">Product Varieties</div>
+            <div className="space-y-1 md:space-y-2">
+              <div className="text-3xl md:text-4xl font-bold text-blue-600">
+                50+
+              </div>
+              <div className="text-sm md:text-base text-gray-600">
+                Product Varieties
+              </div>
             </div>
-            <div className="space-y-2">
-              <div className="text-4xl font-bold text-blue-600">4.9★</div>
-              <div className="text-gray-600">Customer Rating</div>
+            <div className="space-y-1 md:space-y-2">
+              <div className="text-3xl md:text-4xl font-bold text-blue-600">
+                4.9★
+              </div>
+              <div className="text-sm md:text-base text-gray-600">
+                Customer Rating
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Countdown Promotion */}
+      {/* Countdown Promotion - Assuming CountdownTimer component also handles its own responsive text */}
       <CountdownTimer
         targetDate={promotionTargetDate}
         promotionMessage="Flash Sale! Get 20% OFF All Scrubs This Friday!"
       />
 
       {/* Featured Products */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+      <section className="py-16 md:py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+        {" "}
+        {/* Adjusted padding */}
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-12 md:mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4">
+              {" "}
+              {/* Adjusted h2 size, tighter margin */}
               Featured Collection
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
+              {" "}
+              {/* Adjusted p size */}
               Discover our most popular scrubs, loved by healthcare
               professionals across Kenya
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+            {" "}
+            {/* Adjusted grid for 3 columns on medium, 4 on large */}
             {featuredProducts.map((product, index) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.6, delay: index * 0.08 }}
                 viewport={{ once: true }}
               >
-                <Card className="group cursor-pointer hover:shadow-2xl transition-all duration-500 border-0 bg-white/80 backdrop-blur-sm">
+                <Card className="group cursor-pointer hover:shadow-2xl transition-all duration-500 border border-gray-100 bg-white/90 backdrop-blur-sm rounded-lg">
+                  {" "}
+                  {/* Added subtle border, slightly more rounded */}
                   <CardContent className="p-0">
                     <div className="relative overflow-hidden rounded-t-lg pb-[125%]">
-                      {/* Added aspect ratio for products */}
                       <Image
-                        src={product.image || "/placeholder.svg"}
+                        src={
+                          product.image && product.image !== ""
+                            ? product.image
+                            : "/placeholder.svg"
+                        }
                         alt={product.name}
-                        fill // Use fill with parent aspect ratio
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw" // Optimized sizes
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500" /* Less aggressive hover scale */
+                        sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, (max-width: 1024px) 25vw, 20vw" // More precise sizes
                       />
-                      <div className="absolute top-4 left-4">
-                        <Badge className="bg-blue-600 text-white">
+                      <div className="absolute top-3 left-3 md:top-4 md:left-4">
+                        {" "}
+                        {/* Adjusted badge position */}
+                        <Badge className="bg-blue-600 text-white text-xs md:text-sm px-2 py-1 rounded">
+                          {" "}
+                          {/* Smaller, less prominent badge */}
                           {product.badge}
                         </Badge>
                       </div>
-                      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute top-3 right-3 md:top-4 md:right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {" "}
+                        {/* Adjusted heart icon position */}
                         <Button
-                          size="sm"
+                          size="icon" /* Use icon size for smaller button */
                           variant="secondary"
-                          className="rounded-full"
+                          className="rounded-full h-8 w-8" /* Smaller circular button */
                         >
                           <Heart className="h-4 w-4" />
                         </Button>
                       </div>
-                      <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-full">
-                          <ShoppingCart className="mr-2 h-4 w-4" />
+                      <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        {" "}
+                        {/* Adjusted quick add button position */}
+                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-full text-sm py-2">
+                          {" "}
+                          {/* Smaller button text and padding */}
+                          <ShoppingCart className="mr-1 h-4 w-4" />{" "}
+                          {/* Smaller icon and margin */}
                           Quick Add
                         </Button>
                       </div>
                     </div>
-                    <div className="p-6">
-                      <div className="flex items-center mb-2">
+                    <div className="p-4 md:p-6">
+                      {" "}
+                      {/* Adjusted padding */}
+                      <div className="flex items-center mb-1 md:mb-2">
+                        {" "}
+                        {/* Adjusted margin */}
                         <div className="flex text-yellow-400">
                           {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="h-4 w-4 fill-current" />
+                            <Star
+                              key={i}
+                              className="h-3 w-3 md:h-4 md:w-4 fill-current"
+                            /> /* Smaller stars */
                           ))}
                         </div>
-                        <span className="text-sm text-gray-600 ml-2">
+                        <span className="text-xs md:text-sm text-gray-600 ml-1 md:ml-2">
+                          {" "}
+                          {/* Smaller text for ratings */}
                           {product.rating} ({product.reviews})
                         </span>
                       </div>
-                      <h3 className=" text-lg mb-2 group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-base md:text-lg font-medium mb-1 md:mb-2 group-hover:text-blue-600 transition-colors leading-tight">
+                        {" "}
+                        {/* Smaller product name, medium font-weight, tighter line-height */}
                         {product.name}
                       </h3>
-                      <div className="flex items-center mb-3">
-                        <span className="text-2xl  text-pink-600">
+                      <div className="flex items-baseline mb-2">
+                        {" "}
+                        {/* Aligned baseline, slightly reduced margin */}
+                        <span className="text-xl md:text-sm font-bold text-pink-600">
+                          {" "}
+                          {/* Bold price, slightly smaller on mobile */}
                           KSh {product.price.toLocaleString()}
                         </span>
-                        <span className="text-sm text-gray-500 line-through ml-2">
+                        <span className="text-xs md:text-sm text-gray-500 line-through ml-2">
+                          {" "}
+                          {/* Smaller original price */}
                           KSh {product.originalPrice.toLocaleString()}
                         </span>
                       </div>
@@ -372,7 +441,7 @@ export default function HomePage() {
           </div>
 
           <motion.div
-            className="text-center mt-12"
+            className="text-center mt-8 md:mt-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -381,12 +450,12 @@ export default function HomePage() {
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 bg-transparent"
+              className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold transition-all duration-300 bg-transparent text-base md:text-lg" /* Adjusted button text size */
               asChild
             >
               <Link href="/products">
                 View All Products
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
               </Link>
             </Button>
           </motion.div>
@@ -394,49 +463,58 @@ export default function HomePage() {
       </section>
 
       {/* Virtual Try-On Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-pink-50">
+      <section className="py-16 md:py-20 bg-gradient-to-br from-blue-50 to-pink-50">
+        {" "}
+        {/* Adjusted padding */}
         <div className="max-w-7xl mx-auto px-4">
           <motion.div
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            <div className="text-center lg:text-left space-y-6">
-              <Badge className="bg-pink-600 text-white px-4 py-2 text-sm font-medium rounded-full">
+            <div className="text-center lg:text-left space-y-4 md:space-y-6">
+              {" "}
+              {/* Adjusted vertical spacing */}
+              <Badge className="bg-pink-600 text-white px-3 py-1 text-xs md:text-sm font-medium rounded-full">
+                {" "}
+                {/* Smaller badge */}
                 Innovation
               </Badge>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                 Experience Your Scrubs with{" "}
                 <span className="text-pink-600">Virtual Try-On</span>
               </h2>
-              <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-base md:text-lg lg:text-xl leading-relaxed">
                 Not sure which color or style suits you best? Our cutting-edge
                 virtual try-on feature lets you see how JoJo Scrubs look on you
                 before you buy.
               </p>
               <Button
                 size="lg"
-                className="bg-pink-600 hover:bg-pink-700 text-white px-8 py-4 text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+                className="bg-pink-600 hover:bg-pink-700 text-white px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group w-full sm:w-auto" /* Button adjustments */
                 asChild
               >
                 <Link href="/virtual-try-on">
                   Try It Now
-                  <Camera className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  <Camera className="ml-2 h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
             </div>
-            <div className="relative w-full h-80 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative w-full h-72 md:h-96 rounded-xl overflow-hidden shadow-2xl">
+              {" "}
+              {/* Slightly smaller height on mobile, more rounded corners */}
               <Image
-                src="https://scontent-mba2-1.xx.fbcdn.net/v/t51.75761-15/490767791_18008474696724332_7241502076619063386_n.webp?stp=dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFznufF3xUPPpBBVGdmscXfQkEONTS59QBCQQ41NLn1AHaedUij9p7T6qw28IqRqYgt44FANf9wmL-PWxitaWaY&_nc_ohc=bRAJ_kHD7pEQ7kNvwFq2uuD&_nc_oc=AdlXBW05XBAw6wxAh2kIEXpkxYRESkyULQAtxklk4Da2rE6pFEL58dSNLwIFBDdEmcE&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=Oc07UeIrlYniO-biftl-AQ&oh=00_AfR9oQrmMdGftJsT8xLm-aW5MQDszNX9vieQpxu2MrCsfA&oe=687FE213" // Placeholder for a virtual try-on interface
+                src="https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/490767791_18008474696724332_7241502076619063386_n.webp?stp=dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFznufF3xUPPpBBVGdmscXfQkEONTS59QBCQQ41NLn1AHaedUij9p7T6qw28IqRqYgt44FANf9wmL-PWxitaWaY&_nc_ohc=fumSBQalDrwQ7kNvwGglgjN&_nc_oc=AdmJ_aWE0Me5tHHhBLiwH4XyHjdluQWIN_-yKeFTJqUZUmVJtvHh1M4ifEWXH278c3c&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=f7p9DjcSF81VVRTKx3oSAw&oh=00_AfQe6m-S4Bj04YULx9rQHlA5gA55ppDKbnlV5HUDbubCvw&oe=68828513"
                 alt="Virtual Try-On Interface"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                <Play className="h-16 w-16 text-white/80 hover:text-white transition-colors cursor-pointer" />
+                <Play className="h-14 w-14 md:h-16 md:w-16 text-white/80 hover:text-white transition-colors cursor-pointer" />{" "}
+                {/* Slightly smaller play icon */}
               </div>
             </div>
           </motion.div>
@@ -447,23 +525,29 @@ export default function HomePage() {
       <ProductAccessoryCarousel />
 
       {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-br from-pink-50 to-white">
-        <div className="max-w-4xl mx-auto px-4">
+      <section className="py-16 md:py-20 bg-gradient-to-br from-pink-50 to-white">
+        {" "}
+        {/* Adjusted padding */}
+        <div className="max-w-xl mx-auto px-4">
+          {" "}
+          {/* Narrower max-width for better focus on testimonial */}
           <motion.div
-            className="text-center mb-16"
+            // On small screens, it remains centered.
+            // On medium screens and up (md:), it takes full width of its grid column,
+            // aligns its self to start, and its content to text-left.
+            className="text-center mb-12 md:mb-16 md:text-left md:w-full md:mx-0"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4">
               Trusted by Healthcare Heroes
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-base md:text-lg text-gray-600">
               See what medical professionals are saying about JoJo Scrubs
             </p>
           </motion.div>
-
           <motion.div
             className="relative"
             key={currentTestimonial}
@@ -471,44 +555,55 @@ export default function HomePage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Card className="bg-white border-0 shadow-xl pt-10">
+            <Card className="bg-white border shadow-lg pt-10 rounded-xl">
               {" "}
-              {/* Added pt-10 for space for logo */}
-              {/* Testimonial Avatar Fix */}
+              {/* More subtle shadow, more rounded corners */}
               <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-white p-1 rounded-full shadow-lg border-4 border-white z-10">
                 <div className="relative w-20 h-20 rounded-full overflow-hidden">
                   <Image
                     src={
-                      testimonials[currentTestimonial].image ||
-                      "/placeholder.svg"
+                      testimonials[currentTestimonial].image &&
+                      testimonials[currentTestimonial].image !== ""
+                        ? testimonials[currentTestimonial].image
+                        : "/placeholder.svg"
                     }
                     alt={testimonials[currentTestimonial].name}
                     fill
-                    className="object-cover" // Ensure the image fills the circular space
-                    sizes="80px" // Fixed size for the avatar
+                    className="object-cover"
+                    sizes="80px"
                   />
                 </div>
               </div>
-              <CardContent className="p-8 text-center pt-12">
+              <CardContent className="p-6 md:p-8 text-center pt-12 md:pt-16">
                 {" "}
-                {/* Adjusted padding-top */}
-                <div className="text-left">
-                  <div className="font-semibold text-gray-900 text-xl mb-2">
+                {/* Adjusted padding, more top padding for avatar */}
+                <div className="text-center">
+                  {" "}
+                  {/* Centered content for testimonials */}
+                  <div className="font-semibold text-gray-900 text-lg md:text-xl mb-1 md:mb-2">
+                    {" "}
+                    {/* Adjusted name size */}
                     {testimonials[currentTestimonial].name}
                   </div>
-                  <blockquote className="text-lg text-gray-700 mb-4 italic leading-relaxed">
-                    {testimonials[currentTestimonial].content}
-                  </blockquote>
-                  <div className="text-sm text-gray-500 mb-4">
+                  <div className="text-sm md:text-base text-gray-500 mb-3 md:mb-4">
+                    {" "}
+                    {/* Adjusted role size */}
                     {testimonials[currentTestimonial].role}
                   </div>
+                  <blockquote className="text-base md:text-lg text-gray-700 mb-4 md:mb-6 italic leading-relaxed">
+                    {"'"}
+                    {testimonials[currentTestimonial].content}
+                    {"'"} {/* Added quotes */}
+                  </blockquote>
                 </div>
-                <div className="flex justify-center md:justify-start mb-4">
+                <div className="flex justify-center mb-4">
+                  {" "}
+                  {/* Centered stars */}
                   {[...Array(testimonials[currentTestimonial].rating)].map(
                     (_, i) => (
                       <Star
                         key={i}
-                        className="h-6 w-6 text-pink-500 fill-current"
+                        className="h-5 w-5 md:h-6 md:w-6 text-pink-500 fill-current mx-0.5" /* Slightly smaller stars, slight margin between them */
                       />
                     )
                   )}
@@ -516,15 +611,19 @@ export default function HomePage() {
               </CardContent>
             </Card>
           </motion.div>
-
-          <div className="flex justify-center mt-8 space-x-2">
+          <div className="flex justify-center mt-6 space-x-2">
+            {" "}
+            {/* Adjusted margin */}
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentTestimonial ? "bg-pink-600" : "bg-gray-300"
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  index === currentTestimonial
+                    ? "bg-pink-600"
+                    : "bg-gray-300 hover:bg-gray-400"
                 }`}
                 onClick={() => setCurrentTestimonial(index)}
+                aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>
@@ -532,9 +631,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[#F43F93] text-white">
-        {" "}
-        {/* Changed background to solid pink */}
+      <section className="py-16 md:py-20 bg-[#F43F93] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -542,30 +639,30 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
               Ready to Upgrade Your Scrubs?
             </h2>
-            <p className="text-xl mb-8 text-white">
-              {" "}
-              {/* Changed text color to white */}
+            <p className="text-base md:text-lg mb-6 md:mb-8 text-white">
               Join thousands of healthcare professionals who trust JoJo Scrubs
               for their daily comfort and style.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+              {" "}
+              {/* Adjusted gap */}
               <Button
                 size="lg"
-                className="bg-white hover:bg-gray-100 text-[#F43F93] px-8 py-4 text-lg font-semibold rounded-full" // Changed button background and text color
+                className="bg-white hover:bg-gray-100 text-[#F43F93] px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full w-full sm:w-auto" /* Button adjustments */
                 asChild
               >
                 <Link href="/products">
                   Shop Collection
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
                 </Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-[#F43F93] px-8 py-4 text-lg font-semibold rounded-full bg-transparent" // Changed hover text color
+                className="border-2 border-white text-white hover:bg-white hover:text-[#F43F93] px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full bg-transparent w-full sm:w-auto" /* Button adjustments */
                 asChild
               >
                 <Link href="/contact">Contact Us</Link>

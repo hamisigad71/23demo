@@ -1,25 +1,25 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import Image from "next/image"; // Import Image component
-import type { JSX } from "react/jsx-runtime"; // Declare JSX variable
+import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
+import Image from "next/image" // Import Image component
+import type { JSX } from "react/jsx-runtime" // Declare JSX variable
 
 interface CountdownTimerProps {
-  targetDate: string; // ISO 8601 string, e.g., "2025-07-20T10:00:00"
-  promotionMessage: string;
+  targetDate: string // ISO 8601 string, e.g., "2025-07-20T10:00:00"
+  promotionMessage: string
 }
 
 interface TimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
+  days: number
+  hours: number
+  minutes: number
+  seconds: number
 }
 
 const calculateTimeLeft = (targetDate: string): TimeLeft => {
-  const difference = +new Date(targetDate) - +new Date();
-  let timeLeft: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+  const difference = +new Date(targetDate) - +new Date()
+  let timeLeft: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 }
 
   if (difference > 0) {
     timeLeft = {
@@ -27,32 +27,27 @@ const calculateTimeLeft = (targetDate: string): TimeLeft => {
       hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
       minutes: Math.floor((difference / 1000 / 60) % 60),
       seconds: Math.floor((difference / 1000) % 60),
-    };
+    }
   }
-  return timeLeft;
-};
+  return timeLeft
+}
 
-export function CountdownTimer({
-  targetDate,
-  promotionMessage,
-}: CountdownTimerProps) {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(
-    calculateTimeLeft(targetDate)
-  );
+export function CountdownTimer({ targetDate, promotionMessage }: CountdownTimerProps) {
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft(targetDate))
 
   useEffect(() => {
     // Changed setTimeout to setInterval for continuous updates
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft(targetDate));
-    }, 1000);
+      setTimeLeft(calculateTimeLeft(targetDate))
+    }, 1000)
 
-    return () => clearInterval(timer); // Clear interval on component unmount
-  }, [targetDate]);
+    return () => clearInterval(timer) // Clear interval on component unmount
+  }, [targetDate])
 
-  const timerComponents: JSX.Element[] = [];
+  const timerComponents: JSX.Element[] = []
 
   Object.keys(timeLeft).forEach((interval) => {
-    const value = timeLeft[interval as keyof TimeLeft];
+    const value = timeLeft[interval as keyof TimeLeft]
     // Only show if value is > 0 or if previous components are already shown (to avoid empty leading components)
     if (value > 0 || timerComponents.length > 0 || interval === "seconds") {
       // Always show seconds
@@ -61,13 +56,11 @@ export function CountdownTimer({
           <span className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
             {String(value).padStart(2, "0")}
           </span>
-          <span className="text-sm md:text-base text-blue-100 uppercase">
-            {interval}
-          </span>
-        </div>
-      );
+          <span className="text-sm md:text-base text-blue-100 uppercase">{interval}</span>
+        </div>,
+      )
     }
-  });
+  })
 
   return (
     <motion.div
@@ -80,7 +73,7 @@ export function CountdownTimer({
       {/* Background Image for Countdown */}
       <div className="absolute inset-0">
         <Image
-          src="" // Placeholder image for the countdown section
+          src="/placeholder.svg?height=400&width=1200" // Corrected: Added a valid placeholder image URL
           alt="Promotional background"
           fill
           className="object-cover opacity-20 mix-blend-overlay" // Blending effect
@@ -89,13 +82,9 @@ export function CountdownTimer({
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6 drop-shadow-md">
-          {promotionMessage}
-        </h2>
+        <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6 drop-shadow-md">{promotionMessage}</h2>
         {timerComponents.length ? (
-          <div className="flex justify-center space-x-6 md:space-x-10">
-            {timerComponents}
-          </div>
+          <div className="flex justify-center space-x-6 md:space-x-10">{timerComponents}</div>
         ) : (
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -108,5 +97,5 @@ export function CountdownTimer({
         )}
       </div>
     </motion.div>
-  );
+  )
 }
