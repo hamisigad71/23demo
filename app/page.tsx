@@ -97,7 +97,7 @@ export default function LoginPage() {
             onClick={handlePromoClick}
           >
             <Image
-              src="https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/505191245_18014423747724332_7337792287830952095_n.webp?stp=dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH2iBmXSpHGCU7k2BF_SF-9wII0PwKUbOPAgjQ_ApRs44OwzKfmWC0k1mxAs2j-r275afqsovYlElqkyiKX0833&_nc_ohc=WVsNOhJ-YYwQ7kNvwGU1ivJ&_nc_oc=AdmLXxsDrf7hT4ZhNNsfh_Lw2kRtRHduRrZiDHRI6u8Du0Eq1GmwHSnlJ6NAl00Pdps&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=mYZCa2xQbK7Qqe9YbqgBOw&oh=00_AfSsDDeopafoks5a1-lTtw90QIQbmih0AZSBzRiBErRGIA&oe=68827DFE"
+              src="https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/505191245_18014423747724332_7337792287830952095_n.webp?stp=dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH2iBmXSpHGCU7k2BF_SF-9wII0PwKUbOPAgjQ_ApRs44OwzKfmWC0k1mxAs2j-r275afqsovYlElqkyiKX0833&_nc_ohc=Wwfye5LCNqcQ7kNvwFSPkxa&_nc_oc=Adkn6K4f1wcRlnzIF6MgQ0Mj97FcwdrPSxtCngpv_P4vOWQxHkOydTL9wK07TievYWk&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=efTDsWBcThZWa_1CM43IYw&oh=00_AfR9PRiXirco7g-0S5YpZyzbEeIqJt38oj6XeuD00WosWg&oe=6889157E"
               alt="Mid-Year Mega Sale"
               fill
               className="object-cover object-center"
@@ -115,36 +115,26 @@ export default function LoginPage() {
           transition={{ duration: 0.8 }}
         >
           <Card className="w-full max-w-md mx-auto shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
-            <CardHeader className="space-y-1 pb-6">
-              {/* Branding moved inside CardHeader */}
+            <CardHeader className="text-center space-y-2 pt-8 pb-4">
+              <div className="flex justify-center">
+                <Image
+                  src="/images/jojo-scrubs-logo-new.png"
+                  alt="JoJo Scrubs Logo"
+                  width={80}
+                  height={80}
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <CardTitle className="text-3xl font-bold text-gray-900">
+                Welcome Back!
+              </CardTitle>
+              <p className="text-gray-600">
+                Sign in to continue to your account.
+              </p>
             </CardHeader>
 
-            <CardContent className="space-y-6">
-              {/* Welcome Back! text and trust indicators moved inside CardContent */}
-              <div className="space-y-4 text-center">
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Welcome Back!
-                </h2>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Join thousands of healthcare professionals who trust JoJo
-                  Scrubs for their daily comfort and style.
-                </p>
-                <div className="flex items-center justify-center space-x-8 text-sm text-gray-500">
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                    <span>Premium Quality</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span>Fast Delivery</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
-                    <span>Trusted Brand</span>
-                  </div>
-                </div>
-              </div>
-
+            <CardContent className="space-y-6 pt-0">
               {/* Social Login Buttons */}
               <div className="space-y-3">
                 <Button
@@ -153,7 +143,7 @@ export default function LoginPage() {
                   onClick={() => handleSocialLogin("google")}
                 >
                   <Image
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/2048px-Google_%22G%22_logo.svg.png"
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThtDY3lQL0z3nfknrcD16ZxHe9BGCj-MlTGQ&s"
                     alt="Google logo"
                     width={20}
                     height={20}
@@ -168,7 +158,7 @@ export default function LoginPage() {
                     onClick={() => handleSocialLogin("facebook")}
                   >
                     <Image
-                      src="https://cdn.creazilla.com/icons/7911211/facebook-icon-lg.png"
+                      src="https://static.vecteezy.com/system/resources/thumbnails/018/930/698/small/facebook-logo-facebook-icon-transparent-free-png.png"
                       alt="Facebook logo"
                       width={20}
                       height={20}

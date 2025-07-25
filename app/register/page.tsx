@@ -171,7 +171,10 @@ export default function RegisterPage() {
     return (
       <div
         className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center" // Add bg-cover and bg-center
-        style={{ backgroundImage: "url('https://i.pinimg.com/736x/71/6b/82/716b820a8a1d65e7f0bfd5bdb4636dca.jpg')" }} // Add the background image here
+        style={{
+          backgroundImage:
+            "url('https://i.pinimg.com/736x/71/6b/82/716b820a8a1d65e7f0bfd5bdb4636dca.jpg')",
+        }} // Add the background image here
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -193,7 +196,7 @@ export default function RegisterPage() {
             <Check className="w-10 h-10 text-green-600" />
           </motion.div>
           <h2 className="text-3xl font-bold text-gray-900">
-          {formData.firstName}!  Welcome to JOJO SCRUBS Kenya , 
+            {formData.firstName}! Welcome to JOJO SCRUBS Kenya ,
           </h2>
           <p className="text-gray-600 leading-relaxed">
             Ready to shop with us? Discover our premium medical scrubs
@@ -250,7 +253,7 @@ export default function RegisterPage() {
               onClick={handlePromoClick}
             >
               <Image
-                src="https://i.pinimg.com/736x/99/73/75/997375d6ac84565a9b189218e6ae101e.jpg"
+                src="https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/505121687_18014423654724332_6470309283279507284_n.webp?stp=dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFACcbMCQJOvTxA-mJmI9krY3l9p6hqgOdjeX2nqGqA58qSqOyS0CXYjzcOkhcs6wReFjnq8lhimALze8Y9DSAA&_nc_ohc=XcfqNNqVJd4Q7kNvwE51UF5&_nc_oc=AdnbrQ968VIIsVEPTyX1Rn8cpgK5fOlWc1BaFJ3uB_RZcwIMaDbgtYxvWQQKT_eHINI&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=TPA-6SsGfUANqW2v8QsvEA&oh=00_AfRADABkam7w9asB0AgUZg3ZM2X5_-ZD3G9FYsigD3HSLQ&oe=68841899"
                 alt="Mid-Year Mega Sale"
                 fill
                 className="object-cover object-center"

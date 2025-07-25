@@ -239,7 +239,7 @@ export default function HomePage() {
         {/* IMAGE CONTAINER FIXES HERE */}
         <div className="relative min-h-[50vh] lg:min-h-screen">
           <Image
-            src="https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/488582576_18006617801724332_1087545292500469767_n.jpg?stp=dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFihvncD2Or8CBMdQjudX2y2oVvCPuqSu_ahW8I-6pK76BibyAz9FsaxP1Mr2gsNE57RcDBtKhzRN11GB_py6QI&_nc_ohc=DpQMiTeebYMQ7kNvwF4CAxm&_nc_oc=Adk9D4e9mQ_mEbwE9jEWpidf5trQU8Kjlwy6gGz_Boo3EdUAddTZwbDW9AfieMvfd-I&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=WxUr7t4Flke4be3lIpdndw&oh=00_AfQRYl4lNaYVbbhOIZTRNZWulXQnzT-Ou1XKsnlMssGAyA&oe=687FC0AA"
+            src="https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/488582576_18006617801724332_1087545292500469767_n.jpg?stp=dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFihvncD2Or8CBMdQjudX2y2oVvCPuqSu_ahW8I-6pK76BibyAz9FsaxP1Mr2gsNE57RcDBtKhzRN11GB_py6QI&_nc_ohc=psI0bQ0ofTcQ7kNvwFF0gJp&_nc_oc=AdkIHxjE7KWzKcxv9CJBJT8yQi3G-7s3tiMsznP9jGEKMj0Xf6qYlKPBrp8sRytcDhI&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=2KF-gmzMA-mI3Z8qmZcJMw&oh=00_AfQ86B1_ebTqjsgCfdYxjITFGg9-xwGys4bwPb2afPmktg&oe=6889336A"
             alt="Confident medical professional smiling while wearing premium scrubs"
             fill
             // Keep object-cover. object-top for mobile, then object-center for larger screens

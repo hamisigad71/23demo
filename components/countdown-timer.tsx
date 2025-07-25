@@ -1,12 +1,12 @@
-"use client"
+"use client" // 👈 Add this at the top to make the file a Client Component
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import Image from "next/image" // Import Image component
-import type { JSX } from "react/jsx-runtime" // Declare JSX variable
+import Image from "next/image"
+import type { JSX } from "react/jsx-runtime"
 
 interface CountdownTimerProps {
-  targetDate: string // ISO 8601 string, e.g., "2025-07-20T10:00:00"
+  targetDate: string
   promotionMessage: string
 }
 
@@ -36,28 +36,24 @@ export function CountdownTimer({ targetDate, promotionMessage }: CountdownTimerP
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft(targetDate))
 
   useEffect(() => {
-    // Changed setTimeout to setInterval for continuous updates
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft(targetDate))
     }, 1000)
-
-    return () => clearInterval(timer) // Clear interval on component unmount
+    return () => clearInterval(timer)
   }, [targetDate])
 
   const timerComponents: JSX.Element[] = []
 
   Object.keys(timeLeft).forEach((interval) => {
     const value = timeLeft[interval as keyof TimeLeft]
-    // Only show if value is > 0 or if previous components are already shown (to avoid empty leading components)
     if (value > 0 || timerComponents.length > 0 || interval === "seconds") {
-      // Always show seconds
       timerComponents.push(
         <div key={interval} className="flex flex-col items-center">
           <span className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
             {String(value).padStart(2, "0")}
           </span>
           <span className="text-sm md:text-base text-blue-100 uppercase">{interval}</span>
-        </div>,
+        </div>
       )
     }
   })
@@ -70,13 +66,12 @@ export function CountdownTimer({ targetDate, promotionMessage }: CountdownTimerP
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
-      {/* Background Image for Countdown */}
       <div className="absolute inset-0">
         <Image
-          src="/placeholder.svg?height=400&width=1200" // Corrected: Added a valid placeholder image URL
+          src="/placeholder.svg?height=400&width=1200"
           alt="Promotional background"
           fill
-          className="object-cover opacity-20 mix-blend-overlay" // Blending effect
+          className="object-cover opacity-20 mix-blend-overlay"
           priority
         />
       </div>
