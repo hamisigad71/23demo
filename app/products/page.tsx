@@ -276,19 +276,19 @@ export default function ProductsPage() {
 
                 {/* Price Range */}
                 <div className="mb-6">
-                  <label className="text-sm mb-2 block">
-                    Price Range: KSh {priceRange[0].toLocaleString()} - KSh{" "}
-                    {priceRange[1].toLocaleString()}
-                  </label>
-                  <Slider
-                    value={priceRange}
-                    onValueChange={setPriceRange}
-                    max={10000}
-                    min={0}
-                    step={100}
-                    className="mt-2"
-                  />
-                </div>
+                  <label className="text-sm md:text-xs mb-2 block">
+  Price Range: KSh {priceRange[0].toLocaleString()} - KSh{" "}
+  {priceRange[1].toLocaleString()}
+</label>
+<Slider
+  value={priceRange}
+  onValueChange={setPriceRange}
+  max={10000}
+  min={0}
+  step={100}
+  className="mt-2"
+/>
+
 
                 {/* Sizes */}
                 <div className="mb-6">
