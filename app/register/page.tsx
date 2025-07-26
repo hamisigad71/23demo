@@ -317,7 +317,7 @@ export default function RegisterPage() {
                       onClick={() => handleSocialLogin("facebook")}
                     >
                       <Image
-                        src="https://cdn.creazilla.com/icons/7911211/facebook-icon-lg.png"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/018/930/698/small/facebook-logo-facebook-icon-transparent-free-png.png"
                         alt="Facebook logo"
                         width={20}
                         height={20}
