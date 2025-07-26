@@ -97,7 +97,7 @@ export default function LoginPage() {
             onClick={handlePromoClick}
           >
             <Image
-              src="https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/505191245_18014423747724332_7337792287830952095_n.webp?stp=dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH2iBmXSpHGCU7k2BF_SF-9wII0PwKUbOPAgjQ_ApRs44OwzKfmWC0k1mxAs2j-r275afqsovYlElqkyiKX0833&_nc_ohc=Wwfye5LCNqcQ7kNvwFSPkxa&_nc_oc=Adkn6K4f1wcRlnzIF6MgQ0Mj97FcwdrPSxtCngpv_P4vOWQxHkOydTL9wK07TievYWk&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=efTDsWBcThZWa_1CM43IYw&oh=00_AfR9PRiXirco7g-0S5YpZyzbEeIqJt38oj6XeuD00WosWg&oe=6889157E"
+              src="https://i.imgur.com/0nWIu1D.jpeg"
               alt="Mid-Year Mega Sale"
               fill
               className="object-cover object-center"

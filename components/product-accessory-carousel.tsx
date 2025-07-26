@@ -13,36 +13,31 @@ const accessories = [
     id: 1,
     name: "Suture Kit",
     price: 5500,
-    image:
-      "https://jojoscrubs.co.ke/wp/wp-content/uploads/2024/08/Suture-kit-370x370.jpeg", // Placeholder for Suture Kit
+    image: "https://i.imgur.com/JJGfZwo.jpeg", // Placeholder for Suture Kit
   },
   {
     id: 2,
     name: "Stethoscope Case",
     price: 1800,
-    image:
-      "https://jojoscrubs.co.ke/wp/wp-content/uploads/2024/08/Stethoscope-case-370x370.jpeg", // Placeholder for Stethoscope Case
+    image: "https://i.imgur.com/Hv2nUxD.jpeg", // Placeholder for Stethoscope Case
   },
   {
     id: 3,
     name: "Single-Tube Student's Stethoscope",
     price: 1000,
-    image:
-      "https://jojoscrubs.co.ke/wp/wp-content/uploads/2024/08/Single-tube-students-stethoscope-370x370.jpeg", // Placeholder for Stethoscope
+    image: "https://i.imgur.com/SeGIQVX.jpeg", // Placeholder for Stethoscope
   },
   {
     id: 4,
     name: "Pulse Oximeter",
     price: 1200,
-    image:
-      "https://jojoscrubs.co.ke/wp/wp-content/uploads/2024/08/Pulse-oximeter-370x370.jpeg", // Placeholder for Pulse Oximeter
+    image: "https://i.imgur.com/pXemaw3.jpeg", // Placeholder for Pulse Oximeter
   },
   {
     id: 5,
     name: "Pentorch Rechargeable Batteries",
     price: 1200,
-    image:
-      "https://jojoscrubs.co.ke/wp/wp-content/uploads/2024/08/Pentorch-rechargeable-370x370.jpeg", // Placeholder for Pentorch
+    image: "https://i.imgur.com/Dexe3YP.jpeg", // Placeholder for Pentorch
   },
   // Add more accessories as needed
 ];

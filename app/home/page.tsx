@@ -26,8 +26,7 @@ const featuredProducts = [
     name: "Premium Comfort Scrub Set",
     price: 4500,
     originalPrice: 5500,
-    image:
-      "https://scontent-mba2-1.xx.fbcdn.net/v/t51.75761-15/505796942_18014423720724332_1222022728623227707_n.webp?stp=dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFzMNK9SyxafOrgpwWJwMVK2AVHOAdVcNrYBUc4B1Vw2nVGJPHwUH5SbtGutuw28_ywN_rrhYKhxhEAZkmgiS9F&_nc_ohc=hA23a14AQOcQ7kNvwHZ7XDE&_nc_oc=AdmI0ZQmWemQquWNNf2221TSu39c2ZUEZmrKsrPOr6Oo6Fe245vBr1XwW2JTbv5RHGw&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=20AICgXiDS0suuS1o0u4rg&oh=00_AfSMoXLyPgkWvvwOAtU-xOsZBLOWWws4THxV9z1y0cBHOQ&oe=687F93E1",
+    image: "https://i.imgur.com/vpw5T09.jpeg",
     rating: 4.8,
     reviews: 124,
     badge: "Best Seller",
@@ -37,8 +36,7 @@ const featuredProducts = [
     name: "Professional V-Neck Top",
     price: 2800,
     originalPrice: 3200,
-    image:
-      "https://scontent-mba2-1.xx.fbcdn.net/v/t51.75761-15/491451079_18008815346724332_4393147366511598947_n.webp?stp=dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFPIN4dlvIqyWnRrr-bry7RQA3_a6nl20hADf9rqeXbSOYj0wSJ4vQ70qnXnVGV8taDhtR0X_jxDv_rP4Wg_bug&_nc_ohc=fLo5MY9L2yAQ7kNvwHSRElt&_nc_oc=Adn5nT59_c5nwQ4W2pfBDGtfKYODm-9DbGKcdD3rZW8lvfvTL0-0FxJPcl1ZFlDZRgo&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=67omIC1qy5CVmOjhk51DFg&oh=00_AfQFYZK7iWbyuk3ST_2J-lFHpsA_8dbn-KcvjyKfyY0qvg&oe=687F8C6D",
+    image: "https://i.imgur.com/DtWb0OP.jpeg",
     rating: 4.9,
     reviews: 89,
     badge: "New",
@@ -49,7 +47,7 @@ const featuredProducts = [
     price: 3200,
     originalPrice: 3800,
     image:
-      "https://scontent-mba2-1.xx.fbcdn.net/v/t51.75761-15/495866019_18010193606724332_7813781426150353842_n.webp?stp=dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHFUbgmRDcFHDgEC7JGs0HSNCJtupFuaO00Im26kW5o7VmNVNAdYZC1mH6AZn5xope92D0NYmQi8W9g8g6RkeBJ&_nc_ohc=gjHMM9PTb4AQ7kNvwHwunpd&_nc_oc=AdkPGtsDDYDpHVy8z0NrXUmMZHpvZk_bx39fzWhDycsH-iGHsW-4NOKocwhB8fjj4_c&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=p9YLJU601B_FtajHG6OQFw&oh=00_AfR5fuXJZfnKiWGkTcpr9_OvEOnY4xgMWUS1S6X2LnRLqg&oe=687F90D2",
+      "https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/504445908_18014423756724332_7874801041506342832_n.webp?stp=dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFMZ9UnYw1XNR22hmQSWXIwCLnc8T5trUYIudzxPm2tRloL5EfHgOJ8lwstGqb4eQpE1FBpENLKC-tpg13Huao-&_nc_ohc=EUAMpZGN0wMQ7kNvwF6O_da&_nc_oc=Adm7RkyzeBxiUhWIPdzfTT4wTCcz-zHhpBabP1nqCvwCbV2BgXOddrAIQWsD_io0yxY&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=l4GzzQoLtyAwkBLI2OJb7w&oh=00_AfSDyP1aT8vg_IkPD_yML1VSHRT52l7Q3xBZ5I2WxliFKA&oe=6889524C",
     rating: 4.7,
     reviews: 156,
     badge: "Popular",
@@ -59,8 +57,7 @@ const featuredProducts = [
     name: "Antimicrobial Scrub Set",
     price: 5200,
     originalPrice: 6000,
-    image:
-      "https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/490800731_18008590463724332_6419610319458733467_n.webp?stp=dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEVdDPUgPgPLx6JgtkbL0_SS_AVVtkJpFtL8BVW2QmkW8Ran2ckPPmBrN9AzDvccCIHwZJNmpxey18CGJc-itQ9&_nc_ohc=Rk8tJmEVjWIQ7kNvwEKSY-_&_nc_oc=AdmtR1frujI0_poIoKydAeTATTL9yIGkF92LllE5f2p0ZqcTKKMPXTY_uX8zJdPgi8U&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=NAvIDQzVJvq6eL6KLLw2jg&oh=00_AfTwKiapw65E3c0py2SLX2XzDE_SEQ0iNhsDBYKIVa6I0g&oe=68825671",
+    image: "https://i.imgur.com/bnlvgth.jpeg",
     rating: 4.9,
     reviews: 203,
     badge: "Premium",
@@ -71,8 +68,7 @@ const featuredProducts = [
     name: "Classic Comfort Scrub Top",
     price: 3000,
     originalPrice: 3500,
-    image:
-      "https://scontent-mba2-1.xx.fbcdn.net/v/t51.75761-15/504519285_18014423663724332_3007188149829511972_n.webp?stp=dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFz--OxPaTakJgIwLY0Lf4VQlmPWOezYJ5CWY9Y57NgnlsnCTBcDDHYYBYD0IuUySGQQK9fC4x1_QvibPwJ0tvN&_nc_ohc=tm0MRJtdXyQQ7kNvwE8lgYu&_nc_oc=AdkV_8a9AuR2O6ibQdI0TcqI1NcZj4aO258zOVm7IUx-raGUBnz7rea-9miTHnCjvqs&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=DL1_Jk24wOSWO1iOjkbnPw&oh=00_AfRbPIhPFcQeVfxiRShPzYYzR8eWqc-3qaCFY-Jbj1DW-w&oe=687FF252",
+    image: "https://i.imgur.com/jlpCLAY.jpeg",
     rating: 4.7,
     reviews: 95,
     badge: "New Arrival",
@@ -82,8 +78,7 @@ const featuredProducts = [
     name: "Stretch Fit Scrub Pants",
     price: 3800,
     originalPrice: 4200,
-    image:
-      "https://scontent-mba2-1.xx.fbcdn.net/v/t51.75761-15/504514843_18014423708724332_8535992080632231626_n.webp?stp=dst-jpg_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeH87JBt-E2oLo93PZ7pc51BPZTHkXz_hog9lMeRfP-GiHS-c2ta4JLXPGa1_SzYaM6_PZaoentQcfHHv9YxksJf&_nc_ohc=diJUnNFRDMUQ7kNvwETvSpH&_nc_oc=AdlEyN3mo_S04VMiNJY0IIFqC4OtjtLr9CEA25kL7pHSSKRL2fNh5-x2u2zXKpZheCw&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=I5IF9IDNYpVjWPLW07xZWw&oh=00_AfTm-Mp3vJSgdnGyie13tEmdpDkthRBxJJx9srtbfTQZZg&oe=687FDF1E",
+    image: "https://i.imgur.com/Bx7Z5xp.jpeg",
     rating: 4.8,
     reviews: 110,
     badge: "Limited Edition",
@@ -93,8 +88,7 @@ const featuredProducts = [
     name: "Unisex Scrub Jacket",
     price: 4000,
     originalPrice: 4800,
-    image:
-      "https://scontent-mba2-1.xx.fbcdn.net/v/t51.75761-15/477724615_18000663743724332_8483099799931340589_n.jpg?stp=dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHSCd9A1WCLPHehe9QG0BD4h08U1i9i7o2HTxTWL2LujcNahmtfXG8rv1V7bof6Nuu8tqg5JbmZj8fQ3bl0lV1E&_nc_ohc=pO8mdSZjGroQ7kNvwHtdZ14&_nc_oc=AdlaL8jVdYzTyLyPClqkCNA-YC2LTM7cpQYKFEqiGxFyvthM4rA0gGmI7sUdhSvVbIs&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=ZWfZ9gfRFz0Qx0mjvTF8FA&oh=00_AfSeT3xEVt9PXFi1_WszdIqpPR5acUlV7oH_K1oVJtj-wQ&oe=687FEFBF",
+    image: "https://i.imgur.com/n13u9DF.jpeg",
     rating: 4.6,
     reviews: 75,
     badge: "Warmth",
@@ -104,8 +98,7 @@ const featuredProducts = [
     name: "Comfort Fit Scrub Set",
     price: 4900,
     originalPrice: 5800,
-    image:
-      "https://scontent-mba2-1.xx.fbcdn.net/v/t51.75761-15/491468740_18009437327724332_6210034551412919321_n.webp?stp=dst-jpg_tt6&_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHOG5jBXLGxAnJkXgu_HZQ-I5FjN8_zpCsjkWM3z_OkK51Np34-CL-ZFj2OHEOFA6xyPzSk_OR7OK4rMEGZMYOb&_nc_ohc=VXz-99bubFcQ7kNvwG4uy5o&_nc_oc=AdnNjJJpgy42jTnx3ycCzYmiq6Jg50PO74UIBouQGGvj9BGZ3FW0J8x69-OEoPPIBrU&_nc_zt=23&_nc_ht=scontent-mba2-1.xx&_nc_gid=ZAOUbxyQ_grIaty9-9c5cw&oh=00_AfT1qWtRiH2aiC88oPptGjps_bBj7YKsr9vx22Y8XlWVwA&oe=687FEA17",
+    image: "https://i.imgur.com/JbGZbVC.jpeg",
     rating: 4.9,
     reviews: 180,
     badge: "Best Value",
@@ -506,7 +499,7 @@ export default function HomePage() {
               {" "}
               {/* Slightly smaller height on mobile, more rounded corners */}
               <Image
-                src="https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/490767791_18008474696724332_7241502076619063386_n.webp?stp=dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFznufF3xUPPpBBVGdmscXfQkEONTS59QBCQQ41NLn1AHaedUij9p7T6qw28IqRqYgt44FANf9wmL-PWxitaWaY&_nc_ohc=fumSBQalDrwQ7kNvwGglgjN&_nc_oc=AdmJ_aWE0Me5tHHhBLiwH4XyHjdluQWIN_-yKeFTJqUZUmVJtvHh1M4ifEWXH278c3c&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=f7p9DjcSF81VVRTKx3oSAw&oh=00_AfQe6m-S4Bj04YULx9rQHlA5gA55ppDKbnlV5HUDbubCvw&oe=68828513"
+                src="https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/490767791_18008474696724332_7241502076619063386_n.webp?stp=dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFznufF3xUPPpBBVGdmscXfQkEONTS59QBCQQ41NLn1AHaedUij9p7T6qw28IqRqYgt44FANf9wmL-PWxitaWaY&_nc_ohc=1tfkigc1RkkQ7kNvwHkDc69&_nc_oc=AdmG5tXbBFYGyyszvTaKbaIzpmFBOv12TQRMgKkuT7a6wxSQiam-iFxZxo7hhA_QhKQ&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=kTbvRGPV9rVedaQ23gPbGw&oh=00_AfSISgoj-Ng-vCkstITosjb_E7iDG70TpbqeaXXduqtp-w&oe=688AA653"
                 alt="Virtual Try-On Interface"
                 fill
                 className="object-cover"

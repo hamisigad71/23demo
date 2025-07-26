@@ -49,7 +49,6 @@ export default function RegisterPage() {
   const [errors, setErrors] = useState<
     Partial<Record<keyof FormData, string | undefined>>
   >({});
-
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -62,10 +61,58 @@ export default function RegisterPage() {
     agreeToTerms: false,
     subscribeNewsletter: true,
   });
+  const router = useRouter();
+
+  if (isEmailSent) {
+    return (
+      <div
+        className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center" // Add bg-cover and bg-center
+        style={{
+          backgroundImage:
+            "url('https://i.pinimg.com/736x/83/ca/2a/83ca2a3747c71bf71748289b0eb8de68.jpg')",
+        }} // Add the background image here
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="text-center space-y-6 max-w-md bg-white bg-opacity-80 p-8 rounded-lg shadow-lg" // Added background to the inner div for readability
+        >
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1, rotate: 360 }}
+            transition={{
+              type: "spring",
+              stiffness: 260,
+              damping: 20,
+              delay: 0.3,
+            }}
+            className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto"
+          >
+            <Check className="w-10 h-10 text-green-600" />
+          </motion.div>
+          <h2 className="text-3xl font-bold text-gray-900">
+            {formData.firstName}! Welcome to JoJo Scrubs Kenya,
+          </h2>
+          <p className="text-gray-600 leading-relaxed">
+            Ready to shop with us? Discover our premium medical scrubs
+            collection designed just for healthcare heroes like you.
+          </p>
+          <Button
+            className="bg-blue-600 hover:bg-blue-700"
+            onClick={() => {
+              router.push("/home");
+            }}
+          >
+            Start Shopping
+          </Button>
+        </motion.div>
+      </div>
+    );
+  }
 
   const totalSteps = 3;
   const progress = (currentStep / totalSteps) * 100;
-  const router = useRouter();
 
   const updateFormData = (field: keyof FormData, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -75,7 +122,7 @@ export default function RegisterPage() {
     }
   };
 
-  const validateStep = (step: number) => {
+  const validateStep = (step: number): boolean => {
     const newErrors: Partial<Record<keyof FormData, string | undefined>> = {};
 
     if (step === 1) {
@@ -126,94 +173,38 @@ export default function RegisterPage() {
 
   const handleNext = () => {
     if (validateStep(currentStep)) {
-      setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
+      if (currentStep < totalSteps) {
+        setCurrentStep((prev) => prev + 1);
+      }
     }
   };
 
   const handlePrevious = () => {
-    setCurrentStep((prev) => Math.max(prev - 1, 1));
+    if (currentStep > 1) {
+      setCurrentStep((prev) => prev - 1);
+    }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (!validateStep(currentStep)) return;
-
-    setIsLoading(true);
-
-    try {
-      // Simulate API call for account creation
+    if (validateStep(currentStep)) {
+      setIsLoading(true);
+      // Simulate API call for registration
       await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Set success state to show welcome message
-      setIsEmailSent(true);
-
-      // No auto-redirect here, user clicks "Start Shopping"
-    } catch (error) {
-      console.error("Registration failed:", error);
-      // Handle error state here
-    } finally {
       setIsLoading(false);
+      setIsEmailSent(true);
     }
   };
 
   const handleSocialLogin = (provider: string) => {
-    console.log(`Register with ${provider}`);
-    // Handle social registration
+    console.log(`Login with ${provider}`);
+    // Placeholder for actual social login logic
   };
 
   const handlePromoClick = () => {
-    console.log("Promotional image button clicked!");
-    // You can add navigation or open a modal here if needed
-    // For example: router.push('/promotions');
+    console.log("Promotional image clicked!");
+    // Placeholder for actual promo click logic, e.g., router.push('/sale')
   };
-
-  if (isEmailSent) {
-    return (
-      <div
-        className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center" // Add bg-cover and bg-center
-        style={{
-          backgroundImage:
-            "url('https://i.pinimg.com/736x/71/6b/82/716b820a8a1d65e7f0bfd5bdb4636dca.jpg')",
-        }} // Add the background image here
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          className="text-center space-y-6 max-w-md bg-white bg-opacity-80 p-8 rounded-lg shadow-lg" // Added background to the inner div for readability
-        >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={{ scale: 1, rotate: 360 }}
-            transition={{
-              type: "spring",
-              stiffness: 260,
-              damping: 20,
-              delay: 0.3,
-            }}
-            className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto"
-          >
-            <Check className="w-10 h-10 text-green-600" />
-          </motion.div>
-          <h2 className="text-3xl font-bold text-gray-900">
-            {formData.firstName}! Welcome to JOJO SCRUBS Kenya ,
-          </h2>
-          <p className="text-gray-600 leading-relaxed">
-            Ready to shop with us? Discover our premium medical scrubs
-            collection designed just for healthcare heroes like you.
-          </p>
-          <Button
-            className="bg-blue-600 hover:bg-blue-700"
-            onClick={() => {
-              router.push("/home");
-            }}
-          >
-            Start Shopping
-          </Button>
-        </motion.div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4">
@@ -253,7 +244,7 @@ export default function RegisterPage() {
               onClick={handlePromoClick}
             >
               <Image
-                src="https://scontent.fnbo18-1.fna.fbcdn.net/v/t51.75761-15/505121687_18014423654724332_6470309283279507284_n.webp?stp=dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFACcbMCQJOvTxA-mJmI9krY3l9p6hqgOdjeX2nqGqA58qSqOyS0CXYjzcOkhcs6wReFjnq8lhimALze8Y9DSAA&_nc_ohc=XcfqNNqVJd4Q7kNvwE51UF5&_nc_oc=AdnbrQ968VIIsVEPTyX1Rn8cpgK5fOlWc1BaFJ3uB_RZcwIMaDbgtYxvWQQKT_eHINI&_nc_zt=23&_nc_ht=scontent.fnbo18-1.fna&_nc_gid=TPA-6SsGfUANqW2v8QsvEA&oh=00_AfRADABkam7w9asB0AgUZg3ZM2X5_-ZD3G9FYsigD3HSLQ&oe=68841899"
+                src="https://i.imgur.com/BksypOb.jpeg"
                 alt="Mid-Year Mega Sale"
                 fill
                 className="object-cover object-center"

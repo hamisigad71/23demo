@@ -1,4 +1,4 @@
-"use client" // 👈 Add this at the top to make the file a Client Component
+"use client"
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
